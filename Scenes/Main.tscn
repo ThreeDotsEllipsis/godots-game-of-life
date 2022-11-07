@@ -26,7 +26,7 @@ script = ExtResource( 3 )
 [node name="Cells" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
 format = 1
-tile_data = PoolIntArray( 65540, 0, 0, 131077, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0 )
+tile_data = PoolIntArray( 131079, 0, 0, 131082, 0, 0, 196614, 0, 0, 262150, 0, 0, 262154, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="TickTimer" type="Timer" parent="."]
