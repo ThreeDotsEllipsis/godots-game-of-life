@@ -15,5 +15,4 @@ public class Camera : Camera2D
 
         this.Position += new Vector2(x, y) * moveSpeed;
     }
-
 }
