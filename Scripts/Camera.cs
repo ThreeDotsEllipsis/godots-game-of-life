@@ -18,9 +18,18 @@ public class Camera : Camera2D
             {
                 startMouseDrag = mbevent.Position;
             }
+
+            else if (mbevent.ButtonIndex == (int)ButtonList.WheelDown)
+            {
+                this.Zoom += new Vector2(0.1f, 0.1f);
+            }
+            else if (mbevent.ButtonIndex == (int)ButtonList.WheelUp)
+            {
+                this.Zoom -= new Vector2(0.1f, 0.1f);
+            }
         }
 
-        if (ievent is InputEventMouseMotion mmevent)
+        else if (ievent is InputEventMouseMotion mmevent)
         {
             if (Input.IsMouseButtonPressed((int)ButtonList.Middle))
             {

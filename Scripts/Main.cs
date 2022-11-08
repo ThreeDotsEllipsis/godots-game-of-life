@@ -5,11 +5,14 @@ public class Main : Node2D
 {
     Cells cells;
     Sprite hintSprite;
+    Camera2D camera;
+
 
     public override void _Ready()
     {
         cells = GetNode<Cells>("Cells");
         hintSprite = GetNode<Sprite>("HintSprite");
+        camera = GetNode<Camera2D>("Camera");
     }
 
     private void _on_TickTimer_timeout()
@@ -24,8 +27,8 @@ public class Main : Node2D
         if (ievent is InputEventMouseMotion mmevent)
         {
             var cellPosition = new Vector2();
-            cellPosition.x = ((int)(mmevent.Position.x) + (int)(GetNode<Camera2D>("Camera").Position.x)) / 64;
-            cellPosition.y = ((int)(mmevent.Position.y) + (int)(GetNode<Camera2D>("Camera").Position.y)) / 64;
+            cellPosition.x = (int)(mmevent.Position.x / (64 / camera.Zoom.x) + camera.Position.x / 64);
+            cellPosition.y = (int)(mmevent.Position.y / (64 / camera.Zoom.y) + camera.Position.y / 64);
 
             hintSprite.Position = cellPosition * 64;
 
