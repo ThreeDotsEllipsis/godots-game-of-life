@@ -7,6 +7,7 @@ public class Main : Node2D
     Sprite hintSprite;
     Camera2D camera;
     Timer tickTimer;
+    Button startButton;
 
     public override void _Ready()
     {
@@ -14,6 +15,7 @@ public class Main : Node2D
         hintSprite = GetNode<Sprite>("HintSprite");
         camera = GetNode<Camera2D>("Camera");
         tickTimer = GetNode<Timer>("TickTimer");
+        startButton = GetNode<Button>("UI/StartButton");
     }
 
     private void _on_TickTimer_timeout()
@@ -21,15 +23,26 @@ public class Main : Node2D
         cells.NextTurn();
     }
 
-    public override void _Input(InputEvent ievent)
+    public override void _UnhandledInput(InputEvent ievent)
     {
-        base._Input(ievent);
+        base._UnhandledInput(ievent);
 
         if (ievent is InputEventMouseMotion mmevent)
         {
             var cellPosition = new Vector2();
             cellPosition.x = (int)(mmevent.Position.x / (64 / camera.Zoom.x) + camera.Position.x / 64);
             cellPosition.y = (int)(mmevent.Position.y / (64 / camera.Zoom.y) + camera.Position.y / 64);
+
+            var mouseGlobalPosition = mmevent.Position + camera.Position;
+
+            if (mouseGlobalPosition.x < 0)
+            {
+                cellPosition.x -= 1;
+            }
+            if (mouseGlobalPosition.y < 0)
+            {
+                cellPosition.y -= 1;
+            }
 
             hintSprite.Position = cellPosition * 64;
 
@@ -62,10 +75,12 @@ public class Main : Node2D
         if (tickTimer.IsStopped())
         {
             tickTimer.Start();
+            startButton.Text = "STOP";
         }
         else
         {
             tickTimer.Stop();
+            startButton.Text = "START";
         }
     }
 }
