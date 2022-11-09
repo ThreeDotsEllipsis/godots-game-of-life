@@ -6,13 +6,14 @@ public class Main : Node2D
     Cells cells;
     Sprite hintSprite;
     Camera2D camera;
-
+    Timer tickTimer;
 
     public override void _Ready()
     {
         cells = GetNode<Cells>("Cells");
         hintSprite = GetNode<Sprite>("HintSprite");
         camera = GetNode<Camera2D>("Camera");
+        tickTimer = GetNode<Timer>("TickTimer");
     }
 
     private void _on_TickTimer_timeout()
@@ -55,6 +56,20 @@ public class Main : Node2D
         }
 
     }
+
+    private void _on_StartButton_pressed()
+    {
+        if (tickTimer.IsStopped())
+        {
+            tickTimer.Start();
+        }
+        else
+        {
+            tickTimer.Stop();
+        }
+    }
 }
+
+
 
 

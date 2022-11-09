@@ -34,7 +34,7 @@ public class Camera : Camera2D
             if (Input.IsMouseButtonPressed((int)ButtonList.Middle))
             {
                 var movement = startMouseDrag - mmevent.Position;
-                this.Position += movement * moveSpeed;
+                this.Position += movement * moveSpeed * Zoom;
                 startMouseDrag = mmevent.Position;
             }
         }

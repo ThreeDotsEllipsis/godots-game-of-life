@@ -38,7 +38,6 @@ moveSpeed = 2.0
 [node name="Cells" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
 format = 1
-tile_data = PoolIntArray( 131076, 0, 0, 196613, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="TickTimer" type="Timer" parent="."]
@@ -48,4 +47,12 @@ modulate = Color( 1, 1, 1, 0.392157 )
 texture = ExtResource( 1 )
 centered = false
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="StartButton" type="Button" parent="UI"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "START"
+
 [connection signal="timeout" from="TickTimer" to="." method="_on_TickTimer_timeout"]
+[connection signal="pressed" from="UI/StartButton" to="." method="_on_StartButton_pressed"]
