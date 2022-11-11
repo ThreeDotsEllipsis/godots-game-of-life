@@ -33,7 +33,7 @@ public class Main : Node2D
             cellPosition.x = (int)(mmevent.Position.x / (64 / camera.Zoom.x) + camera.Position.x / 64);
             cellPosition.y = (int)(mmevent.Position.y / (64 / camera.Zoom.y) + camera.Position.y / 64);
 
-            var mouseGlobalPosition = mmevent.Position + camera.Position;
+            var mouseGlobalPosition = mmevent.Position + camera.Position / camera.Zoom;
 
             if (mouseGlobalPosition.x < 0)
             {
