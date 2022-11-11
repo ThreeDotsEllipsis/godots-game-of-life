@@ -83,7 +83,14 @@ public class Main : Node2D
             startButton.Text = "START";
         }
     }
+
+    private void _on_SpeedSlider_value_changed(float value)
+    {
+        tickTimer.WaitTime = 1 / value;
+    }
 }
+
+
 
 
 

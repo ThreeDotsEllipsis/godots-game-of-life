@@ -8,9 +8,9 @@ public class Camera : Camera2D
 
     private Vector2 startMouseDrag = Vector2.Zero;
 
-    public override void _Input(InputEvent ievent)
+    public override void _UnhandledInput(InputEvent ievent)
     {
-        base._Input(ievent);
+        base._UnhandledInput(ievent);
 
         if (ievent is InputEventMouseButton mbevent)
         {
