@@ -7,7 +7,9 @@ public class Main : Node2D
     Sprite hintSprite;
     Camera2D camera;
     Timer tickTimer;
-    Button startButton;
+    Button switchButton;
+    Button stepButton;
+    Slider speedSlider;
 
     public override void _Ready()
     {
@@ -15,7 +17,9 @@ public class Main : Node2D
         hintSprite = GetNode<Sprite>("HintSprite");
         camera = GetNode<Camera2D>("Camera");
         tickTimer = GetNode<Timer>("TickTimer");
-        startButton = GetNode<Button>("UI/StartButton");
+        switchButton = GetNode<Button>("UI/SwitchButton");
+        stepButton = GetNode<Button>("UI/StepButton");
+        speedSlider = GetNode<Slider>("UI/SpeedSlider");
     }
 
     private void _on_TickTimer_timeout()
@@ -70,18 +74,27 @@ public class Main : Node2D
 
     }
 
-    private void _on_StartButton_pressed()
+    private void _on_SwitchButton_pressed()
     {
         if (tickTimer.IsStopped())
         {
             tickTimer.Start();
-            startButton.Text = "STOP";
+            switchButton.Text = "AUTOMATIC";
+            stepButton.Hide();
+            speedSlider.Show();
         }
         else
         {
             tickTimer.Stop();
-            startButton.Text = "START";
+            switchButton.Text = "MANUAL";
+            stepButton.Show();
+            speedSlider.Hide();
         }
+    }
+
+    private void _on_StepButton_pressed()
+    {
+        cells.NextTurn();
     }
 
     private void _on_SpeedSlider_value_changed(float value)
@@ -89,9 +102,4 @@ public class Main : Node2D
         tickTimer.WaitTime = 1 / value;
     }
 }
-
-
-
-
-
 
