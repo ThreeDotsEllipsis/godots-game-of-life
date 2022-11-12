@@ -50,4 +50,14 @@ public class Cells : TileMap
             }
         }
     }
+
+    public void ClearCells()
+    {
+        usedCells = this.GetUsedCells();
+
+        foreach (Vector2 cell in usedCells)
+        {
+            this.SetCell((int)cell.x, (int)cell.y, -1);
+        }
+    }
 }

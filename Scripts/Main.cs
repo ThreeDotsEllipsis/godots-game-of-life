@@ -97,9 +97,16 @@ public class Main : Node2D
         cells.NextTurn();
     }
 
+    private void _on_ClearButton_pressed()
+    {
+        cells.ClearCells();
+    }
+
     private void _on_SpeedSlider_value_changed(float value)
     {
         tickTimer.WaitTime = 1 / value;
     }
 }
+
+
 

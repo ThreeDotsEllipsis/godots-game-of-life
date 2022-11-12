@@ -71,7 +71,15 @@ max_value = 4.0
 step = 0.1
 value = 1.0
 
+[node name="ClearButton" type="Button" parent="UI"]
+margin_left = 944.0
+margin_top = 10.0
+margin_right = 1010.0
+margin_bottom = 40.0
+text = "CLEAR"
+
 [connection signal="timeout" from="TickTimer" to="." method="_on_TickTimer_timeout"]
 [connection signal="pressed" from="UI/SwitchButton" to="." method="_on_SwitchButton_pressed"]
 [connection signal="pressed" from="UI/StepButton" to="." method="_on_StepButton_pressed"]
 [connection signal="value_changed" from="UI/SpeedSlider" to="." method="_on_SpeedSlider_value_changed"]
+[connection signal="pressed" from="UI/ClearButton" to="." method="_on_ClearButton_pressed"]
