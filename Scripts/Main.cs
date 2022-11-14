@@ -31,19 +31,18 @@ public class Main : Node2D
     {
         base._UnhandledInput(ievent);
 
+        var mousePosition = GetGlobalMousePosition();
+
         if (ievent is InputEventMouseMotion mmevent)
         {
-            var cellPosition = new Vector2();
-            cellPosition.x = (int)(mmevent.Position.x / (64 / camera.Zoom.x) + camera.Position.x / 64);
-            cellPosition.y = (int)(mmevent.Position.y / (64 / camera.Zoom.y) + camera.Position.y / 64);
+            var cellPosition = (mousePosition / 64);
+            cellPosition = new Vector2((int)cellPosition.x, (int)cellPosition.y);
 
-            var mouseGlobalPosition = mmevent.Position + camera.Position / camera.Zoom;
-
-            if (mouseGlobalPosition.x < 0)
+            if (mousePosition.x < 0)
             {
                 cellPosition.x -= 1;
             }
-            if (mouseGlobalPosition.y < 0)
+            if (mousePosition.y < 0)
             {
                 cellPosition.y -= 1;
             }
