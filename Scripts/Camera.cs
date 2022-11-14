@@ -21,11 +21,11 @@ public class Camera : Camera2D
 
             else if (mbevent.ButtonIndex == (int)ButtonList.WheelDown)
             {
-                this.Zoom += new Vector2(0.1f, 0.1f);
+                ZoomCamera(new Vector2(0.1f, 0.1f));
             }
             else if (mbevent.ButtonIndex == (int)ButtonList.WheelUp)
             {
-                this.Zoom -= new Vector2(0.1f, 0.1f);
+                ZoomCamera(new Vector2(-0.1f, -0.1f));
             }
         }
 
@@ -38,5 +38,14 @@ public class Camera : Camera2D
                 startMouseDrag = mmevent.Position;
             }
         }
+
+    }
+
+    private void ZoomCamera(Vector2 zoomFactor)
+    {
+        var mousePosition = GetGlobalMousePosition();
+        this.Zoom += zoomFactor;
+        var diff = mousePosition - GetGlobalMousePosition();
+        Position += diff;
     }
 }
